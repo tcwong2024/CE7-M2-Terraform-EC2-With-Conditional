@@ -1,5 +1,5 @@
 variable "is_production" {
-  default = false
+  default = true
 }
 
 variable "to_create" {
@@ -15,10 +15,16 @@ variable "ami_id" {
 variable "ec2_name" {
   description = "Name of EC2"
   type        = string
-  default     = "wtc-tf-ec2-cond" # Replace with your preferred EC2 Instance Name 
+  default     = "wtc-tf-ec2-conditional" # Replace with your preferred EC2 Instance Name 
 }
 
-variable "instance_type" {
+variable "instance_type_small" {
+  description = "EC2 Instance type"
+  type        = string
+  default     = "t2.small"
+}
+
+variable "instance_type_default" {
   description = "EC2 Instance type"
   type        = string
   default     = "t2.micro"
@@ -33,17 +39,17 @@ variable "key_name" {
 variable "sg_name" {
   description = "Name of EC2 security group"
   type        = string
-  default     = "wtc-ec2-allow-ssh-http-https" # Replace with your own preferred security group name that gives an overview of the security group coverage
+  default     = "wtc-sg-tf-module" # Replace with your own preferred security group name that gives an overview of the security group coverage
 }
 
 variable "vpc_name" {
   description = "Name of VPC to use"
   type        = string
-  default     = "wtc-tf-vpc-cond" # Update with your own VPC name, found under VPC > your VPC > Tags > value of Name
+  default     = "wtc-vpc-tf-module" # Update with your own VPC name, found under VPC > your VPC > Tags > value of Name
 }
 
 variable "subnet_name" {
   description = "Name of subnet to use"
   type        = string
-  default     = "wtc-tf-public-subnet-az1" # Update with your own Subnet name, found under VPC > your VPC > selected Public Subnet > tags > value of Name
+  default     = "wtc-vpc-tf-module-public-us-east-1a" # Update with your own Subnet name, found under VPC > your VPC > selected Public Subnet > tags > value of Name
 }
